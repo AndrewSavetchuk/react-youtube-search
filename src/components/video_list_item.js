@@ -1,19 +1,12 @@
 import React from 'react';
 
-const VideoListItem = ({video, onVideoSelect}) => {
+const VideoListItem = ({video, onVideoSelect, scrollToTop}) => {
     const imageUrl = video.snippet.thumbnails.default.url;
-
-    const scrollToTop = () => {
-        var windowWidth = window.innerWidth;
-        if(windowWidth < 992) {
-            window.scrollTo(0, 0);
-        }
-    }
 
     return(
         <li onClick={() => {onVideoSelect(video), scrollToTop()}} className="c-video-list__item">
             <div className="c-video-list__item-media">
-                <img src={imageUrl} lt="" />
+                <img src={imageUrl} alt="" />
             </div>
 
             <div className="c-video-list__item-content">

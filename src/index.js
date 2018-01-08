@@ -1,6 +1,8 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+// Scroll
+import { Link, DirectLink, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
 import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
@@ -18,6 +20,14 @@ class App extends Component {
         };
 
         this.videoSearch('NoCopyRightSounds');
+        this.scrollToTop = this.scrollToTop.bind(this);
+    }
+
+    scrollToTop() {
+      scroll.scrollToTop({
+          delay: 0,
+          duration: 250
+      });
     }
 
     videoSearch(term) {
@@ -41,7 +51,7 @@ class App extends Component {
                     <VideoDetail video={this.state.selectedVideo} />
                     <VideoList
                         onVideoSelect={selectedVideo => this.setState({selectedVideo})}
-                        videos={this.state.videos} />
+                        videos={this.state.videos} scrollToTop={this.scrollToTop} />
                 </div>
                 <div className="col-lg-12">
                     <div className="c-footer">
